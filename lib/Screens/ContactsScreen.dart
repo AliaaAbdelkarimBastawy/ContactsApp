@@ -58,7 +58,8 @@ class ContactItem extends StatelessWidget {
       Consumer<ContactListModel>(builder: (BuildContext context, ContactListModel value, Widget? child)
           {
             return  ListTile(
-            leading: CircleAvatar(child: Center(child: Text(value.ContactList[index].Name[0])),),
+            leading: CircleAvatar(child: Center(child: Text(value.ContactList[index].Name[0],
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)),),
             title: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [Text(value.ContactList[index].Name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),),
             SizedBox(height: 5,), Text(value.ContactList[index].Telephone)],),

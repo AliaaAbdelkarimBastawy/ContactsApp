@@ -1,4 +1,5 @@
 import 'package:contact_app/Screens/AddNewContactScreen.dart';
+import 'package:contact_app/Screens/AnimatedSplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -8,8 +9,9 @@ import 'Screens/ContactsScreen.dart';
 import 'Screens/EditContactScreen.dart';
 
 GoRouter router = GoRouter(
-    initialLocation: "/Screen1",
+    initialLocation: "/Start",
     routes: [
+      GoRoute(path: "/Start", builder: (context,state) => AnimatedSplashScreen()),
       GoRoute(path: "/Screen1", builder: (context,state) => ContactsScreen()),
       GoRoute(path: "/Screen2", builder: (context,state) => AddNewContactScreen()),
       GoRoute(name: "/Screen3",path: "/Screen3/:index", builder: (context,state) =>

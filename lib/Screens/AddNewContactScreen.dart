@@ -48,191 +48,197 @@ class _AddNewContactScreenState extends State<AddNewContactScreen> {
         title: Center(child: Text("Add New Contact")),
       actions: [Icon(Icons.add, color: Colors.blue,)],),
 
-       body: Form(
-         key: _globalkey,
-         child: Column(
+       body: GestureDetector(
+         onTap: ()
+         {
+           FocusManager.instance.primaryFocus?.unfocus();
+         },
+         child: Form(
+           key: _globalkey,
+           child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-          SizedBox(height: 20,),
-          Stack(children: [
-            Container(
-              height: 200, width: 200,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: image == null
-                      ? AssetImage("Assets/Images/NoPhoto.png")
-                      : Image.file(image!).image,
-                  fit: BoxFit.cover,
+            SizedBox(height: 20,),
+            Stack(children: [
+              Container(
+                height: 200, width: 200,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: image == null
+                        ? AssetImage("Assets/Images/NoPhoto.png")
+                        : Image.file(image!).image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: ClipOval(
+                  child:  image == null ? Image.asset("Assets/Images/NoPhoto.png",)
+                  : Image.file(image!, fit: BoxFit.cover,),
                 ),
               ),
-              child: ClipOval(
-                child:  image == null ? Image.asset("Assets/Images/NoPhoto.png",)
-                : Image.file(image!, fit: BoxFit.cover,),
-              ),
-            ),
-            Positioned(child:IconButton(icon:  Icon(Icons.camera_alt, color: Colors.white, size: 20,),
-              onPressed: () {
-              showModalBottomSheet(context: context, builder: ((builder) => bottomSheet()));
-              },),
-              bottom: 5, right: 35,),
-          ],),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16,0,0,16),
-            child: Expanded(
-              child: Row(
-                children: [
-                  Icon(Icons.person),
-                  SizedBox(width: 15),
-                  Column(
-                    children: [
-                      Container(
-                         width: 300,
-                        child: TextFormField(
-                          controller: NameController,
-                          decoration: InputDecoration(
-                            labelText: "Name",
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(width: 1, color: Colors.black),
-                              borderRadius: BorderRadius.circular(10.0),
+              Positioned(child:IconButton(icon:  Icon(Icons.camera_alt, color: Colors.white, size: 20,),
+                onPressed: () {
+                showModalBottomSheet(context: context, builder: ((builder) => bottomSheet()));
+                },),
+                bottom: 5, right: 35,),
+            ],),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16,0,0,16),
+              child: Expanded(
+                child: Row(
+                  children: [
+                    Icon(Icons.person),
+                    SizedBox(width: 15),
+                    Column(
+                      children: [
+                        Container(
+                           width: 300,
+                          child: TextFormField(
+                            controller: NameController,
+                            decoration: InputDecoration(
+                              labelText: "Name",
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(width: 1, color: Colors.black),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                          ),
 
-                          validator: (String? value) {
+                            validator: (String? value) {
 
-                            if(value == "")
-                            {
-                              return "Name cannot be empty";
-                            }
-
-                            else if(value!.contains("@"))
-                            {
-                              return "Name cannot contain @";
-
-                            }
-                            return null;
-
-                          },
-
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16,0,0,16),
-            child: Expanded(
-              child: Row(
-                children: [
-                  Icon(Icons.email),
-                  SizedBox(width: 15),
-                  Column(
-                    children: [
-                      Container(
-                     width: 300,
-                        child: TextFormField(
-                          controller: EmailController,
-                          decoration: InputDecoration(
-                            labelText: "Email",
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(width: 1, color: Colors.black),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-
-                          validator: (String? value) {
-
-                            if(value == "")
-                            {
-                              return "Email cannot be empty";
-                            }
-
-                            else if(!value!.contains("@"))
-                            {
-                              return "Email must contain @";
-
-                            }
-                            return null;
-
-                          },
-
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16,0,0,16),
-            child: Expanded(
-              child: Row(
-                children: [
-                  Icon(Icons.phone),
-                  SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(width: 300,
-                        child: TextFormField(
-                          controller: PhoneController,
-                          decoration: InputDecoration(
-                            labelText: "Telephone",
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(width: 1, color: Colors.black),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          validator: (String? value) {
-
-                            if(value == "")
+                              if(value == "")
                               {
-                                return "Telephone cannot be empty";
+                                return "Name cannot be empty";
                               }
 
-                            else if(value!= null && value.length <11)
+                              else if(value!.contains("@"))
                               {
-                                return "Telephone must be 11 numbers";
+                                return "Name cannot contain @";
 
                               }
-                            return null;
+                              return null;
 
-                          },
+                            },
+
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-         Consumer<ContactListModel>(builder: (BuildContext context, ContactListModel value, Widget? child)
-             {
-               return   Padding(
-                 padding: const EdgeInsets.all(16.0),
-                 child:
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16,0,0,16),
+              child: Expanded(
+                child: Row(
+                  children: [
+                    Icon(Icons.email),
+                    SizedBox(width: 15),
+                    Column(
+                      children: [
+                        Container(
+                       width: 300,
+                          child: TextFormField(
+                            controller: EmailController,
+                            decoration: InputDecoration(
+                              labelText: "Email",
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(width: 1, color: Colors.black),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
 
-                 Container(width:100,
-                     child: ElevatedButton(onPressed: (){
-                       if(_globalkey.currentState!.validate())
-                       {
-                         value.AddContact(Model(Name: NameController.text,
-                             Email: EmailController.text, Telephone: PhoneController.text,
-                             Image: image));
+                            validator: (String? value) {
 
-                         GoRouter.of(context).go("/Screen1");
-                       }
+                              if(value == "")
+                              {
+                                return "Email cannot be empty";
+                              }
 
-                     }, child: Text("Save"),)),
-               );
-             },
-         ),
+                              else if(!value!.contains("@"))
+                              {
+                                return "Email must contain @";
+
+                              }
+                              return null;
+
+                            },
+
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16,0,0,16),
+              child: Expanded(
+                child: Row(
+                  children: [
+                    Icon(Icons.phone),
+                    SizedBox(width: 15),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(width: 300,
+                          child: TextFormField(
+                            controller: PhoneController,
+                            decoration: InputDecoration(
+                              labelText: "Telephone",
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(width: 1, color: Colors.black),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            validator: (String? value) {
+
+                              if(value == "")
+                                {
+                                  return "Telephone cannot be empty";
+                                }
+
+                              else if(value!= null && value.length <11)
+                                {
+                                  return "Telephone must be 11 numbers";
+
+                                }
+                              return null;
+
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+           Consumer<ContactListModel>(builder: (BuildContext context, ContactListModel value, Widget? child)
+               {
+                 return   Padding(
+                   padding: const EdgeInsets.all(16.0),
+                   child:
+
+                   Container(width:100,
+                       child: ElevatedButton(onPressed: (){
+                         if(_globalkey.currentState!.validate())
+                         {
+                           value.AddContact(Model(Name: NameController.text,
+                               Email: EmailController.text, Telephone: PhoneController.text,
+                               Image: image));
+
+                           GoRouter.of(context).go("/Screen1");
+                         }
+
+                       }, child: Text("Save"),)),
+                 );
+               },
+           ),
       ],
     ),
+         ),
        ),
 
     );
