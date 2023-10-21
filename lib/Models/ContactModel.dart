@@ -5,8 +5,13 @@ class Model{
   String Email = "";
   String Telephone = "";
   io.File? Image;
+  String LastName = "";
+  String CompanyPhone = "";
+  String WebSite = "";
 
-  Model({required this.Name, required this.Email, required this.Telephone, required this.Image});
+
+  Model({required this.Name, required this.Email, required this.Telephone, required this.Image,
+    required this.CompanyPhone, required this.LastName, required this.WebSite});
 }
 
 
@@ -26,12 +31,16 @@ class ContactListModel extends ChangeNotifier
 
   }
 
-  EditContact (int index, String name, String email, String telephone, io.File image)
+  EditContact (int index, String name, String email, String telephone, io.File image, String CompanyPhone,
+      String LastName, String WebSite)
   {
 
     ContactList[index].Name = name;
     ContactList[index].Email = email;
     ContactList[index].Telephone = telephone;
+    ContactList[index].WebSite = WebSite;
+    ContactList[index].CompanyPhone = CompanyPhone;
+    ContactList[index].LastName = LastName;
     ContactList[index].Image = image != null ? io.File(image.path) : io.File("Assets/Images/NoPhoto.png");
     notifyListeners();
 

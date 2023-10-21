@@ -9,10 +9,7 @@ import '../Models/ContactModel.dart';
 class ContactsScreen extends StatelessWidget {
    ContactsScreen({Key? key}) : super(key: key);
 
-  List<Model> Contacts = [
-    Model(Name: "Yaman", Email: 'yaman@yahoo.com', Telephone: '01234567890', Image: null),
-    Model(Name: 'Ilhan', Email: 'ilhan@yahoo.com', Telephone: '01234567898', Image: null),
-  ];
+
   @override
   Widget build(BuildContext context) {
 
